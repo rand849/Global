@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:translator/translator.dart';
 
 
 
@@ -12,6 +13,7 @@ class SettingWidget extends StatefulWidget {
 }
 class _SettingWidgetState extends State<SettingWidget>{
   var Language;
+  GoogleTranslator translator =GoogleTranslator();
 
   @override
   Widget build(BuildContext context) {

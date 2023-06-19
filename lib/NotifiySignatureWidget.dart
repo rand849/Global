@@ -44,37 +44,45 @@ class NotifiySignatureWidget extends StatelessWidget {
                 )
                ),
                Container(
-                     width: 200,
-                      height: 90,
-                      margin: const EdgeInsets.only(
-                              left:190, right: 37, top: 370, bottom: 10),
-                      child:Padding(
-                        padding: const EdgeInsets.fromLTRB(10,20,0,0),
-                      child: InkWell(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10,20,0,0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromARGB(255, 109, 109, 109),
-                            ),
-                            alignment: Alignment.center,
-                            // ignore: sort_child_properties_last
-                            child: 
-                            const Text(
-                              "Open Camera",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ), 
+            width: 190,
+            height: 90,
+            margin: const EdgeInsets.only(
+                left: 150, right: 37, top: 380, bottom: 10),
+            child: Padding(
+              padding: const EdgeInsets.all(5),
+              child: InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 2,
                         ),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 1,
+                            color: Color.fromARGB(255, 114, 114, 114),
+                          )
+                        ]),
+                    alignment: Alignment.center,
+                    // ignore: sort_child_properties_last
+                    child: const Text(
+                      "Open Camera",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
                         onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const SignatureWidget()));
+                                    builder: (context) => const SignatureWidget(cameras: [],)));
                         },
                       ),
                       ),

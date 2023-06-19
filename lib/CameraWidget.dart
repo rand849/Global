@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, avoid_print, sized_box_for_whitespace
+// ignore_for_file: file_names, avoid_print, sized_box_for_whitespace, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
@@ -74,6 +74,16 @@ class _CameraWidgetState extends State<CameraWidget> {
     return Scaffold(
         body: Stack(
       children: [
+        Align(
+          alignment: AlignmentDirectional.bottomCenter,
+          child:  
+          Container(
+              height:50,
+              width:600,
+              color: Colors.grey,
+              margin:const EdgeInsets.only(top:500,),
+            ),
+        ),
         Container(
             height: double.infinity, child: CameraPreview(_cameraController)),
         Align(
@@ -90,13 +100,15 @@ class _CameraWidgetState extends State<CameraWidget> {
             child:
                 button3(Icons.flip_camera_ios_outlined, Alignment.bottomLeft)),
       ],
-    ));
+    ),
+    );
   }
 }
 
 Widget button(IconData icon, Alignment alignment) {
   return Align(
       alignment: alignment,
+      
       child: Container(
           margin: const EdgeInsets.only(
             left: 20,
@@ -147,5 +159,6 @@ Widget button3(IconData icon, Alignment alignment) {
               Icons.flip_camera_ios_outlined,
               color: Color.fromARGB(255, 0, 0, 0),
             ),
-          )));
+          ))
+          );
 }

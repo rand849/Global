@@ -35,17 +35,17 @@ class _PayWidgetState extends State<PayWidget> {
       child: Material(
         child: Stack(
           children: [
-            Positioned(
-                          child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: const Image(
-                              image: AssetImage('images/background.jpg'),
-                              fit: BoxFit.cover,
-                            )),
-                      )),
+            // Positioned(
+            //               child: Align(
+            //             alignment: Alignment.topCenter,
+            //             child: Container(
+            //                 width: double.infinity,
+            //                 height: double.infinity,
+            //                 child: const Image(
+            //                   image: AssetImage('images/background.jpg'),
+            //                   fit: BoxFit.cover,
+            //                 )),
+            //           )),
             SingleChildScrollView(
               child: Column(
                 children: [
@@ -81,8 +81,8 @@ class _PayWidgetState extends State<PayWidget> {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: const Color.fromARGB(255, 109, 109, 109),
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: const Color.fromARGB(162, 109, 109, 109),
                                 ),
                                  padding: const EdgeInsets.only(left: 20),
                                        margin: const EdgeInsets.only(
@@ -152,10 +152,10 @@ class _PayWidgetState extends State<PayWidget> {
                                         color: Color.fromARGB(255, 0, 0, 0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color.fromARGB(255, 109, 109, 109),
+                                      fillColor: const Color.fromARGB(162, 109, 109, 109),
                                       border: InputBorder.none,
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(20),
+                                          borderRadius: BorderRadius.circular(10),
                                           borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 2,
@@ -186,10 +186,10 @@ class _PayWidgetState extends State<PayWidget> {
                                 color: Color.fromARGB(255, 0, 0, 0),
                               ),
                               filled: true,
-                              fillColor: const Color.fromARGB(255, 109, 109, 109),
+                              fillColor: const Color.fromARGB(162, 109, 109, 109),
                               border: InputBorder.none,
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 2,
@@ -216,10 +216,10 @@ class _PayWidgetState extends State<PayWidget> {
                                   color: Color.fromARGB(255, 0, 0, 0),
                                 ),
                                 filled: true,
-                                fillColor: const Color.fromARGB(255, 109, 109, 109),
+                                fillColor: const Color.fromARGB(162, 109, 109, 109),
                                 border: InputBorder.none,
                                 enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(10),
                                     borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 2,
@@ -255,8 +255,8 @@ class _PayWidgetState extends State<PayWidget> {
                                     padding: const EdgeInsets.only(bottom: 8,left: 8, right: 8),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color.fromARGB(255, 109, 109, 109),
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: const Color.fromARGB(162, 109, 109, 109),
                                       ),
                                        padding: const EdgeInsets.only(left: 20),
                                        margin: const EdgeInsets.only(
@@ -265,7 +265,7 @@ class _PayWidgetState extends State<PayWidget> {
                                       //   right: 180,
                                        ),
                                       child: DropdownButton(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(10),
                                         underline: const Divider(color: Colors.transparent),
                                         dropdownColor: const Color.fromARGB(255, 109, 109, 109),
                                         iconSize: 40,
@@ -314,8 +314,8 @@ class _PayWidgetState extends State<PayWidget> {
                                      padding: const EdgeInsets.only(bottom: 8,left: 8, right: 8),
                                      child: Container(
                                        decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: const Color.fromARGB(255, 109, 109, 109),
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: const Color.fromARGB(162, 109, 109, 109),
                                        ),
                                        padding: const EdgeInsets.only(
                                       left: 20,

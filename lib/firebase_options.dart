@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCMhG7qWRRhEOsYc6EC2fxM70Y8cd1Srfo',
-    appId: '1:747810044338:android:4ec1b2e3546c9d2ff30cab',
-    messagingSenderId: '747810044338',
-    projectId: 'globalidoc-1ff93',
-    storageBucket: 'globalidoc-1ff93.appspot.com',
+    apiKey: 'AIzaSyDKiKBCsIpElSYwfV9LskT2nBk97iFNDIU',
+    appId: '1:148500310293:android:20b89bb02fd7d5da8ea11c',
+    messagingSenderId: '148500310293',
+    projectId: 'globalidoc-cd69a',
+    storageBucket: 'globalidoc-cd69a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDGemTSn4GBLNCgwf3gHN6mzSQkqUdW-9w',
-    appId: '1:747810044338:ios:063f6bd9ab51dbbff30cab',
-    messagingSenderId: '747810044338',
-    projectId: 'globalidoc-1ff93',
-    storageBucket: 'globalidoc-1ff93.appspot.com',
+    apiKey: 'AIzaSyCxslBI5ASejAmu3bb6VZwBdZcP4dgNh_0',
+    appId: '1:148500310293:ios:2fe6d12c95234fd98ea11c',
+    messagingSenderId: '148500310293',
+    projectId: 'globalidoc-cd69a',
+    storageBucket: 'globalidoc-cd69a.appspot.com',
     iosBundleId: 'com.example.globalidoc',
   );
 }

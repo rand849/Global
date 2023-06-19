@@ -21,9 +21,11 @@ class _SigninWidgetState extends State<SigninWidget> {
   var Town;
   var Doc;
   var Email;
-  final TextEditingController textEditingController = TextEditingController();
+  final _formfield=GlobalKey<FormState>();
+  final emailController=TextEditingController();
+  final IDController=TextEditingController();
   GlobalKey<FormFieldState> FormF =  GlobalKey<FormFieldState>();
-  GlobalKey<FormFieldState> FormB =  GlobalKey<FormFieldState>();
+  
   send() {
       var formdata = FormF.currentState;
       if (formdata!.validate()) {
@@ -39,8 +41,8 @@ class _SigninWidgetState extends State<SigninWidget> {
       builder: (context,constraints) {
         return Scaffold(
           appBar: AppBar(
-                  backgroundColor: const Color.fromARGB(249, 133, 133, 133),
-                  elevation: 0,
+                  backgroundColor: const Color.fromARGB(110, 133, 133, 133),
+                  elevation: 3,
                   iconTheme: const IconThemeData(
                     color: Colors.black,
                     size: 30,
@@ -52,21 +54,14 @@ class _SigninWidgetState extends State<SigninWidget> {
          child: Material(
         child: Stack(
           children: [
-            Positioned(
-                child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: const Image(
-                       image: AssetImage('images/background.jpg'),
-                       fit: BoxFit.cover,
-                        ))),
+
             SingleChildScrollView(
             child: Column(
               children: [
                 Align(
                   alignment: Alignment.topCenter,
                   child: Container(
-                    margin: const EdgeInsets.only(right:20),
+                    margin: const EdgeInsets.only(right:20, top:10),
                     width:300,
                       height:100,
                       child: const Image(
@@ -90,13 +85,18 @@ class _SigninWidgetState extends State<SigninWidget> {
                           padding: const EdgeInsets.only(
                               top: 5, bottom: 15, left: 35, right: 35),
                           child: TextFormField(
-                            onSaved: (text) {
+                            controller: IDController,
+                            onChanged: (text) {
                               IDnum = text;
                             },
                             validator: (text) {
                               if (text!.length < 9) {
                                 return "* must be more than 9 numbers";
                               }
+                              else if(text.isEmpty){
+                                return "Enter ID Number";
+                              }
+                  
                               return null;
                             },
                             style: const TextStyle(fontSize: 15),
@@ -118,10 +118,10 @@ class _SigninWidgetState extends State<SigninWidget> {
                                 color: Colors.black54,
                               ),
                               filled: true,
-                              fillColor: const Color.fromARGB(255, 109, 109, 109),
+                              fillColor: const Color.fromARGB(162, 109, 109, 109),
                               border: InputBorder.none,
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 2,
@@ -130,13 +130,13 @@ class _SigninWidgetState extends State<SigninWidget> {
                           )),
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromARGB(255, 109, 109, 109),
+                          borderRadius: BorderRadius.circular(10),
+                          color: const Color.fromARGB(162, 109, 109, 109),
                         ),
                         padding:
                             const EdgeInsets.only(bottom: 8, left: 5, right: 35),
                         margin: const EdgeInsets.only(
-                            left: 32, right: 37, top: 20, bottom: 10),
+                            left: 32, right: 37, top: 20),
                         child:
                          DropdownSearch<String>(
                               popupProps: const PopupProps.menu(
@@ -371,13 +371,14 @@ class _SigninWidgetState extends State<SigninWidget> {
                                         
                         ),),
                   Form(
-                        key: FormB,
+                        key:_formfield,
                         child: Column(
                           children: [
                             Container(
                               padding: const EdgeInsets.only(
                                   top: 35, left: 35, right: 35),
                               child: TextFormField(
+                                controller: emailController,
                                 onSaved: (text) {
                                   Email = text;
                                 },
@@ -401,21 +402,33 @@ class _SigninWidgetState extends State<SigninWidget> {
                                   ),
                                   filled: true,
                                   fillColor:
-                                     const Color.fromARGB(255, 109, 109, 109),
+                                     const Color.fromARGB(162, 109, 109, 109),
                                   border: InputBorder.none,
                                   enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(10),
                                       borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 2,
                                       )),
                                 ),
+                                validator: (value){
+                                 bool emailValid= RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_'{}+@[a-zA-z0-9]+\.[a-zA-Z]+]")
+                                .hasMatch(value!);
+                                  if(value.isEmpty){
+                                    return "Enter Email";
+                                  }
+
+                                if(!emailValid){
+                                  return "Enter Valid Email";
+                                }
+                                return null;
+                                },
                               ),
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color:const Color.fromARGB(255, 109, 109, 109),
+                                borderRadius: BorderRadius.circular(10),
+                                color:const Color.fromARGB(162, 109, 109, 109),
                               ),
                               padding: const EdgeInsets.only(
                                   bottom: 8, left: 20, right: 10),
@@ -496,7 +509,12 @@ class _SigninWidgetState extends State<SigninWidget> {
                       ),
                     ),
                     onTap: () {
-                      // send();
+                      // if(_formfield.currentState!.validate()){
+                        // final isValid = _formfield.currentState!.validate();
+                        // print("Success");
+                      //   emailController.clear();
+                      //   IDController.clear();
+                      // }
                         Navigator.push(
                             context,
                             MaterialPageRoute(
