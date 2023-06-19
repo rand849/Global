@@ -1,26 +1,25 @@
-// ignore_for_file: file_names
+import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-
 import '../CameraWidget.dart';
 import '../FinalWidget.dart';
 import '../NotifiySignatureWidget.dart';
 import '../SignatureWidget.dart';
 
-class PreviewPage extends StatefulWidget {
-  const PreviewPage({Key? key, required this.picture}) : super(key: key);
-
-  final XFile picture;
+// ignore: must_be_immutable
+class ImagePreview extends StatefulWidget {
+  ImagePreview(this.file, {super.key});
+  XFile file;
 
   @override
-  State<PreviewPage> createState() => _PreviewPageState();
+  State<ImagePreview> createState() => _ImagePreviewState();
 }
 
-class _PreviewPageState extends State<PreviewPage> {
+class _ImagePreviewState extends State<ImagePreview> {
   @override
   Widget build(BuildContext context) {
+    File picture = File(widget.file.path);
     return Scaffold(
       drawer: const NavigationDrawer(),
       appBar: AppBar(
@@ -37,24 +36,15 @@ class _PreviewPageState extends State<PreviewPage> {
         backgroundColor: const Color.fromARGB(192, 233, 232, 232),
       ),
       body: Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Image.file(File(widget.picture.path), fit: BoxFit.cover, width: 250),
-          const SizedBox(height: 24),
-          Text(widget.picture.name)
-        ]),
+        child: Image.file(picture),
       ),
     );
   }
 }
 
-class NavigationDrawer extends StatefulWidget {
+class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({super.key});
 
-  @override
-  State<NavigationDrawer> createState() => _NavigationDrawerState();
-}
-
-class _NavigationDrawerState extends State<NavigationDrawer> {
   @override
   Widget build(BuildContext context) => Drawer(
         child: SingleChildScrollView(
@@ -66,7 +56,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           ],
         )),
       );
-
   Widget buildHeader(BuildContext context) => Container(
         color: Colors.grey.shade700,
         padding: EdgeInsets.only(
@@ -80,24 +69,20 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           runSpacing: 16,
           children: [
             ListTile(
-              leading:
-                  const Icon(Icons.party_mode_outlined, color: Colors.black),
+              leading: const Icon(Icons.party_mode_outlined),
               title: const Text("Retake Picture"),
-              onTap: () async {
-                await availableCameras().then(
-                  (value) => Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => CameraWidget(cameras: value),
-                    ),
-                  ),
-                );
+              onTap: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const CameraWidget(
+                          cameras: [],
+                        )));
               },
             ),
             const Divider(
               color: Colors.black,
             ),
             ListTile(
-              leading: const Icon(Icons.history_edu, color: Colors.black),
+              leading: const Icon(Icons.history_edu),
               title: const Text("Signature"),
               onTap: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -105,24 +90,20 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.refresh_outlined, color: Colors.black),
+              leading: const Icon(Icons.refresh_outlined),
               title: const Text("Redo Signature"),
-              onTap: () async {
-                await availableCameras().then(
-                  (value) => Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => SignatureWidget(cameras: value),
-                    ),
-                  ),
-                );
+              onTap: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const SignatureWidget(
+                          cameras: [],
+                        )));
               },
             ),
             const Divider(
               color: Colors.black,
             ),
             ListTile(
-              leading:
-                  const Icon(Icons.check_circle_outline, color: Colors.black),
+              leading: const Icon(Icons.check),
               title: const Text("Done"),
               onTap: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
