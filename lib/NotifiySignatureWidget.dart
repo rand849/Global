@@ -2,6 +2,7 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'SignatureWidget.dart';
 
@@ -23,11 +24,12 @@ class NotifiySignatureWidget extends StatelessWidget {
               ),
             ),
           ),
-          // Container(
-          //   height:400,
-          //   width:400,
-          //   child: Lottie.network("https://lottiefiles.com/99614-signature"),
-          // ),
+          // ignore: sized_box_for_whitespace
+          Container(
+            height:400,
+            width:400,
+            child: Lottie.asset("lottie/signature.json"),
+          ),
           Container(
               height: 300,
               width: 300,

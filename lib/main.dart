@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:globalidoc/WelcomeWidget.dart';
 
 
-// import 'package:lottie/lottie.dart';
-
 void main() {
   runApp(const GlobalIDoc());
 }

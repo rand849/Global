@@ -509,12 +509,6 @@ class _SigninWidgetState extends State<SigninWidget> {
                       ),
                     ),
                     onTap: () {
-                      // if(_formfield.currentState!.validate()){
-                        // final isValid = _formfield.currentState!.validate();
-                        // print("Success");
-                      //   emailController.clear();
-                      //   IDController.clear();
-                      // }
                         Navigator.push(
                             context,
                             MaterialPageRoute(
