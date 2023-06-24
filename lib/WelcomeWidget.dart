@@ -28,7 +28,7 @@ class WelcomeWidget extends StatelessWidget {
                      width: 125,
                       height:50,
                       margin: const EdgeInsets.only(
-                              left:130, right: 37, top: 200,),
+                              left:105, right: 37, top: 200,),
                       decoration: BoxDecoration(
                            border: Border.all(
                             color: Colors.black,

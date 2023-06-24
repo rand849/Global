@@ -1,8 +1,13 @@
 // ignore_for_file: file_names, avoid_print, sized_box_for_whitespace, use_build_context_synchronously
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:globalidoc/screen/PreviewPage.dart';
+
+import 'FinalWidget.dart';
+import 'PayWidget.dart';
+import 'WelcomeWidget.dart';
 
 class SignatureWidget extends StatefulWidget {
     const SignatureWidget({Key? key, required this.cameras}) : super(key: key);
@@ -14,8 +19,15 @@ class SignatureWidget extends StatefulWidget {
 }
 
 class _SignatureWidgetState extends State<SignatureWidget> {
-late CameraController _cameraController;
+
+  late CameraController _cameraController;
   bool _isRearCameraSelected = true;
+
+  final pages = [
+    const FinalWidget(),
+    const PayWidget(),
+    const WelcomeWidget(),
+  ];
 
   @override
   void dispose() {
@@ -27,6 +39,11 @@ late CameraController _cameraController;
   void initState() {
     startCamera(widget.cameras![0]);
     super.initState();
+  }
+
+  Future flipCamera() async {
+    setState(() => _isRearCameraSelected = !_isRearCameraSelected);
+    startCamera(widget.cameras![_isRearCameraSelected ? 0 : 1]);
   }
 
   Future takePicture() async {
@@ -71,82 +88,42 @@ late CameraController _cameraController;
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
+    _curvedBarButton(index) {
+      setState(() {
+        switch (index) {
+          case 0:
+            takePicture();
+            break;
+          case 1:
+            flipCamera();
+            break;
+        }
+      });
+    }
+
     return Scaffold(
-        body: Stack(
-      children: [
-        Container(
-            height: double.infinity, child: CameraPreview(_cameraController)),
-        Align(
-          alignment: AlignmentDirectional.bottomCenter,
-          child: RawMaterialButton(
-              onPressed: takePicture,
-              child: button(Icons.camera_alt_outlined, Alignment.bottomCenter)),
-        ),
-        GestureDetector(
-            onTap: () {
-              setState(() => _isRearCameraSelected = !_isRearCameraSelected);
-              startCamera(widget.cameras![_isRearCameraSelected ? 0 : 1]);
-            },
-            child:
-                button3(Icons.flip_camera_ios_outlined, Alignment.bottomLeft)),
-      ],
-    ));
+      body: Stack(
+        children: [
+          Container(
+              height: double.infinity,
+              width:double.infinity,
+              child: CameraPreview(_cameraController)),
+        ],
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+          onTap: (index) {
+            _curvedBarButton(index);
+          },
+          height: 60,
+          backgroundColor: Colors.transparent,
+          color: Colors.grey,
+          items: const [
+            Icon(Icons.camera_alt_outlined),
+            Icon(Icons.flip_camera_ios_outlined),
+          ]),
+    );
   }
 }
 
-Widget button(IconData icon, Alignment alignment) {
-  return Align(
-      alignment: alignment,
-      child: Container(
-          margin: const EdgeInsets.only(
-            left: 20,
-            bottom: 20,
-          ),
-          width: 75,
-          height: 75,
-          decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  offset: Offset(2, 2),
-                  blurRadius: 10,
-                )
-              ]),
-          child: const Center(
-            child: Icon(
-              Icons.camera_alt_outlined,
-              color: Color.fromARGB(255, 0, 0, 0),
-            ),
-          )));
-}
-
-Widget button3(IconData icon, Alignment alignment) {
-  return Align(
-      alignment: alignment,
-      child: Container(
-          margin: const EdgeInsets.only(
-            left: 20,
-            bottom: 20,
-          ),
-          width: 75,
-          height: 75,
-          decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  offset: Offset(2, 2),
-                  blurRadius: 10,
-                )
-              ]),
-          child: const Center(
-            child: Icon(
-              Icons.flip_camera_ios_outlined,
-              color: Color.fromARGB(255, 0, 0, 0),
-            ),
-          )));
-}
 

@@ -14,26 +14,27 @@ class NotifiySignatureWidget extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         body: Stack(children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/background.jpg'),
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
+                        Container(
+                   height: double.infinity,
+                    width:double.infinity,
+                    decoration:const BoxDecoration( 
+                        image:DecorationImage(
+                        image:AssetImage('images/back1.jpg'),
+                        fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
           // ignore: sized_box_for_whitespace
           Container(
-            height:400,
-            width:400,
+            margin: const EdgeInsets.only(left: 90,top:100),
+            height:200,
+            width:200,
             child: Lottie.asset("lottie/signature.json"),
           ),
           Container(
               height: 300,
               width: 300,
-              margin: const EdgeInsets.only(top: 200, left: 25),
+              margin: const EdgeInsets.only(top: 330, left: 25),
               child: const Text(
                 "Write your Signature in the air.",
                 style: TextStyle(
@@ -43,10 +44,10 @@ class NotifiySignatureWidget extends StatelessWidget {
                 ),
               )),
           Container(
-            width: 190,
-            height: 90,
+            width: 170,
+            height: 80,
             margin: const EdgeInsets.only(
-                left: 150, right: 37, top: 380, bottom: 10),
+                left: 150, right: 37, top: 445, bottom: 10),
             child: Padding(
               padding: const EdgeInsets.all(5),
               child: InkWell(
@@ -54,15 +55,10 @@ class NotifiySignatureWidget extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 2,
-                        ),
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
                           BoxShadow(
-                            blurRadius: 1,
-                            color: Color.fromARGB(255, 114, 114, 114),
+                            color:  Color.fromARGB(255, 161, 161, 161),
                           )
                         ]),
                     alignment: Alignment.center,

@@ -35,17 +35,13 @@ class _PayWidgetState extends State<PayWidget> {
       child: Material(
         child: Stack(
           children: [
-            // Positioned(
-            //               child: Align(
-            //             alignment: Alignment.topCenter,
-            //             child: Container(
-            //                 width: double.infinity,
-            //                 height: double.infinity,
-            //                 child: const Image(
-            //                   image: AssetImage('images/background.jpg'),
-            //                   fit: BoxFit.cover,
-            //                 )),
-            //           )),
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: const Image(
+                image: AssetImage('images/back1.jpg'),
+                fit: BoxFit.cover,
+              )),
             SingleChildScrollView(
               child: Column(
                 children: [
@@ -375,15 +371,12 @@ class _PayWidgetState extends State<PayWidget> {
                     child: InkWell(
                       child: Container(
                         decoration: BoxDecoration(
-                           border: Border.all(
-                            color: Colors.black,
-                            width:2,
-                           ),
+
                            borderRadius: BorderRadius.circular(20),
                            boxShadow: const [
                             BoxShadow(
-                            blurRadius: 1,
-                            color: Color.fromARGB(255, 114, 114, 114),
+                            
+                            color: Color.fromARGB(255, 158, 158, 158),
                             )]
                        ),
                         alignment: Alignment.center,
@@ -392,7 +385,7 @@ class _PayWidgetState extends State<PayWidget> {
                           "Next ",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            color: Colors.black,
+                            color: Color.fromARGB(255, 0, 0, 0),
                             fontSize: 20,
                           ),
                         ),
