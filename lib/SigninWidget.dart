@@ -41,8 +41,8 @@ class _SigninWidgetState extends State<SigninWidget> {
       builder: (context,constraints) {
         return Scaffold(
           appBar: AppBar(
-                  backgroundColor: const Color.fromARGB(110, 133, 133, 133),
-                  elevation: 3,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
                   iconTheme: const IconThemeData(
                     color: Colors.black,
                     size: 30,
@@ -54,9 +54,20 @@ class _SigninWidgetState extends State<SigninWidget> {
          child: Material(
         child: Stack(
           children: [
+              Container(
+                   height: double.infinity,
+                    width:double.infinity,
+                    decoration:const BoxDecoration( 
+                        image:DecorationImage(
+                        image:AssetImage('images/back.jpg'),
+                        fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
 
             SingleChildScrollView(
             child: Column(
+              
               children: [
                 Align(
                   alignment: Alignment.topCenter,
@@ -69,7 +80,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                         fit: BoxFit.fitWidth,
                       )),
                 ),
-            
+
                 const Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
                   child: Align(
@@ -134,13 +145,14 @@ class _SigninWidgetState extends State<SigninWidget> {
                           color: const Color.fromARGB(162, 109, 109, 109),
                         ),
                         padding:
-                            const EdgeInsets.only(bottom: 8, left: 5, right: 35),
+                            const EdgeInsets.only(bottom: 2, left: 5, right: 35),
                         margin: const EdgeInsets.only(
                             left: 32, right: 37, top: 20),
                         child:
                          DropdownSearch<String>(
                               popupProps: const PopupProps.menu(
                               menuProps: MenuProps(
+                                elevation: 1,
                                 backgroundColor:Color.fromARGB(255, 151, 151, 151), 
                               ),
                               showSearchBox: true,
@@ -476,6 +488,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                         ),
                       ),
                 Container(
+                  margin: const EdgeInsets.only(top:10),
                   width: 130,
                   height: 80,
                   child: InkWell(
@@ -483,14 +496,13 @@ class _SigninWidgetState extends State<SigninWidget> {
                       padding: const EdgeInsets.all(15.0),
                       child: Container(
                         decoration: BoxDecoration(
-                           border: Border.all(
-                            color: Colors.black,
-                            width:2,
-                           ),
+                          //  border: Border.all(
+                          //   color: Colors.black,
+                          //   width:2,
+                          //  ),
                            borderRadius: BorderRadius.circular(20),
                            boxShadow: const [
                             BoxShadow(
-                            blurRadius: 1,
                             color: Color.fromARGB(255, 114, 114, 114),
                             )]
                        ),
