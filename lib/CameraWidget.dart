@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:globalidoc/FinalWidget.dart';
+import 'package:globalidoc/PayWidget.dart';
+import 'package:globalidoc/WelcomeWidget.dart';
 import 'package:globalidoc/screen/PreviewPage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -18,6 +21,12 @@ class _CameraWidgetState extends State<CameraWidget> {
   late CameraController _cameraController;
   bool _isRearCameraSelected = true;
 
+  final pages = [
+    const FinalWidget(),
+    const PayWidget(),
+    const WelcomeWidget(),
+  ];
+
   @override
   void dispose() {
     _cameraController.dispose();
@@ -28,6 +37,11 @@ class _CameraWidgetState extends State<CameraWidget> {
   void initState() {
     startCamera(widget.cameras![0]);
     super.initState();
+  }
+
+  Future flipCamera() async {
+    setState(() => _isRearCameraSelected = !_isRearCameraSelected);
+    startCamera(widget.cameras![_isRearCameraSelected ? 0 : 1]);
   }
 
   Future takePicture() async {
@@ -72,40 +86,51 @@ class _CameraWidgetState extends State<CameraWidget> {
 
   @override
   Widget build(BuildContext context) {
+    _curvedBarButton(index) {
+      setState(() {
+        switch (index) {
+          case 0:
+            takePicture();
+            break;
+          case 1:
+            flipCamera();
+            break;
+        }
+      });
+    }
+
     return Scaffold(
-        body: Stack(
-      children: [
-        Container(
-            height: double.infinity, child: CameraPreview(_cameraController)),
-        Align(
-          alignment: AlignmentDirectional.bottomCenter,
-          child: RawMaterialButton(
-              onPressed: takePicture,
-              child:  
-              button(Icons.camera_alt_outlined, Alignment.bottomCenter)),
-        ),
-        GestureDetector(
-            onTap: () {
-              setState(() => _isRearCameraSelected = !_isRearCameraSelected);
-              startCamera(widget.cameras![_isRearCameraSelected ? 0 : 1]);
-            },
-            child:
-                button3(Icons.flip_camera_ios_outlined, Alignment.bottomLeft)),
-      ],
-    ),
-         bottomNavigationBar: CurvedNavigationBar(
+      body: Stack(
+        children: [
+          Container(
+              height: double.infinity, child: CameraPreview(_cameraController)),
+          Align(
+            alignment: AlignmentDirectional.bottomCenter,
+            child: RawMaterialButton(
+                onPressed: takePicture,
+                child:
+                    button(Icons.camera_alt_outlined, Alignment.bottomCenter)),
+          ),
+          GestureDetector(
+              onTap: () {
+                setState(() => _isRearCameraSelected = !_isRearCameraSelected);
+                startCamera(widget.cameras![_isRearCameraSelected ? 0 : 1]);
+              },
+              child: button3(
+                  Icons.flip_camera_ios_outlined, Alignment.bottomLeft)),
+        ],
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
           onTap: (index) {
-              setState(() => _isRearCameraSelected = !_isRearCameraSelected);
-              startCamera(widget.cameras![_isRearCameraSelected ? 0 : 1]);
-            }, 
-          height:60,
+            _curvedBarButton(index);
+          },
+          height: 60,
           backgroundColor: Colors.transparent,
           color: Colors.grey,
-          
           items: const [
-          Icon(Icons.camera_alt_outlined),
-          Icon(Icons.flip_camera_ios_outlined),
-        ]),
+            Icon(Icons.camera_alt_outlined),
+            Icon(Icons.flip_camera_ios_outlined),
+          ]),
     );
   }
 }
@@ -113,7 +138,6 @@ class _CameraWidgetState extends State<CameraWidget> {
 Widget button(IconData icon, Alignment alignment) {
   return Align(
       alignment: alignment,
-      
       child: Container(
           margin: const EdgeInsets.only(
             left: 20,
@@ -164,9 +188,9 @@ Widget button3(IconData icon, Alignment alignment) {
               Icons.flip_camera_ios_outlined,
               color: Color.fromARGB(255, 0, 0, 0),
             ),
-          ))
-          );
+          )));
 }
+
 class curved_navigation_bar extends StatefulWidget {
   const curved_navigation_bar({super.key});
 
@@ -177,18 +201,16 @@ class curved_navigation_bar extends StatefulWidget {
 class _curved_navigation_barState extends State<curved_navigation_bar> {
   @override
   Widget build(BuildContext context) {
-    return 
-    CurvedNavigationBar(
-    // onTap: (index) async {
-    //           setState((){ _isRearCameraSelected = !_isRearCameraSelected;});
-    //           startCamera(widget.cameras![_isRearCameraSelected ? 0 : 1]);
-    //         }, 
-    backgroundColor: Colors.transparent,
-    color: Colors.grey,
-    items: const [
-    Icon(Icons.camera_alt_outlined),
-    Icon(Icons.flip_camera_ios_outlined),
-   ]
- );
+    return CurvedNavigationBar(
+        // onTap: (index) async {
+        //           setState((){ _isRearCameraSelected = !_isRearCameraSelected;});
+        //           startCamera(widget.cameras![_isRearCameraSelected ? 0 : 1]);
+        //         },
+        backgroundColor: Colors.transparent,
+        color: Colors.grey,
+        items: const [
+          Icon(Icons.camera_alt_outlined),
+          Icon(Icons.flip_camera_ios_outlined),
+        ]);
   }
 }
