@@ -5,6 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:globalidoc/PayWidget.dart';
 import 'package:globalidoc/SettingWidget.dart';
+import 'package:globalidoc/model/user.dart';
+import 'package:globalidoc/repository/user_repository.dart';
+import 'package:globalidoc/repository/controller/signup_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 class SigninWidget extends StatefulWidget {
   const SigninWidget({Key? key}) : super(key: key);
@@ -19,13 +24,19 @@ class _SigninWidgetState extends State<SigninWidget> {
   var Town;
   var Doc;
   var Email;
+  
+  final _nationaltyController=TextEditingController();
+  final _docController =TextEditingController();
+  final _emailController = TextEditingController();
+  final _IDController = TextEditingController();
+  final controller =Get.put(SignUpController());
   final _formfield = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final IDController = TextEditingController();
-  GlobalKey<FormFieldState> FormF = GlobalKey<FormFieldState>();
+  final formKey =GlobalKey<FormState>();
+  final userRepo =Get.put(UserRepository());
+  // GlobalKey<FormFieldState> formKey = GlobalKey<FormFieldState>();
 
   send() {
-    var formdata = FormF.currentState;
+    var formdata = formKey.currentState;
     if (formdata!.validate()) {
       formdata.save();
       print("Nationalty=$Nationalty");
@@ -33,7 +44,15 @@ class _SigninWidgetState extends State<SigninWidget> {
       print("not valid");
     }
   }
-
+ 
+  @override
+    void dispose(){
+    _nationaltyController.dispose();
+    _docController.dispose();
+    _emailController.dispose();
+    _IDController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -84,14 +103,14 @@ class _SigninWidgetState extends State<SigninWidget> {
                     ),
                   ),
                   Form(
-                    key: FormF,
+                    key: formKey,
                     autovalidateMode: AutovalidateMode.always,
                     child: Column(children: [
                       Container(
                           padding: const EdgeInsets.only(
                               top: 5, bottom: 15, left: 35, right: 35),
                           child: TextFormField(
-                            controller: IDController,
+                            controller: _IDController,
                             onChanged: (text) {
                               IDnum = text;
                             },
@@ -113,18 +132,18 @@ class _SigninWidgetState extends State<SigninWidget> {
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.picture_in_picture),
                               prefixIconColor: (Colors.black),
-                              labelText: "ID Number",
-                              labelStyle: const TextStyle(
+                              labelText: "hello".tr,
+                              labelStyle: GoogleFonts.robotoSerif(
                                 color: Colors.black,
                               ),
-                              hintText: "Not less than 9 numbers",
+                              hintText: "Not less than 9 numbers".tr,
                               hintStyle: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.black54,
                               ),
                               filled: true,
                               fillColor:
-                                  const Color.fromARGB(162, 109, 109, 109),
+                                  const Color.fromARGB(255, 209, 209, 209),
                               border: InputBorder.none,
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -137,7 +156,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: const Color.fromARGB(162, 109, 109, 109),
+                          color: const Color.fromARGB(255, 209, 209, 209),
                         ),
                         padding: const EdgeInsets.only(
                             bottom: 2, left: 5, right: 35),
@@ -148,221 +167,220 @@ class _SigninWidgetState extends State<SigninWidget> {
                             menuProps: MenuProps(
                               elevation: 1,
                               backgroundColor:
-                                  Color.fromARGB(255, 151, 151, 151),
+                                  Color.fromARGB(255, 209,209, 209),
                             ),
                             showSearchBox: true,
                             showSelectedItems: true,
                           ),
-                          items: const [
-                            "Afghanistan",
-                            "Albania",
-                            "Algeria",
-                            "Andorra",
-                            "Angola",
-                            "Antigua & Barbuda",
-                            "Argentina",
-                            "Armenia",
-                            "Australia",
-                            "Austria",
-                            "Azerbaijan",
-                            "The Bahamas",
-                            "Bahrin",
-                            "Bangladesh",
-                            "Barbados",
-                            "Belarus",
-                            "Belgium",
-                            "Belize",
-                            "Benin",
-                            "Bhutan",
-                            "Bolivia",
-                            "Bosnia & Herzegovina",
-                            "Botswana",
-                            "Brazil",
-                            "Brunei",
-                            "Bulgaria",
-                            "Burkina Faso",
-                            "Burundi",
-                            "Cambodia",
-                            "Cameroon",
-                            "Canada",
-                            "Cape Verde ",
-                            "Cape Verde ",
-                            "Central African Republic ",
-                            "Chad ",
-                            "Chile",
-                            "China",
-                            "Colombia",
-                            "Comoros",
-                            "Republic of the Congo",
-                            "Democratic Republic of the Congo ",
-                            "Costa Rica",
-                            "Cote d’Ivoire",
-                            "Croatia",
-                            "Cuba",
-                            "Cyprus",
-                            "Czech Republic",
-                            "Denmark",
-                            "Djibouti",
-                            "Dominica",
-                            "Dominican Republic",
-                            "East Timor",
-                            "Ecuador",
-                            "Egypt",
-                            "El Salvador",
-                            "Equatorial Guinea",
-                            "Eritrea",
-                            "Estonia",
-                            "Ethiopia",
-                            "Fiji",
-                            "Finland",
-                            "France",
-                            "Gabon",
-                            "The Gambia",
-                            "Georgia",
-                            "Germany",
-                            "Ghana",
-                            "Greece",
-                            "Grenada",
-                            "Guatemala",
-                            "Guinea",
-                            "Guinea Bissau",
-                            "Guyana",
-                            "Haiti",
-                            "Honduras",
-                            "Hungary",
-                            "Iceland",
-                            "India",
-                            "Indonesia",
-                            "Iran",
-                            "Iraq",
-                            "Ireland",
-                            "Italy",
-                            "Jamaica",
-                            "Japan",
-                            "Jordan",
-                            "Kazakhstan",
-                            "Kenya",
-                            "Kiribati",
-                            "Korea",
-                            "Kuwait",
-                            "Kyrgyzstan",
-                            "Laos",
-                            "Latvia",
-                            "Lebanon",
-                            "Lesotho",
-                            "Liberia",
-                            "Libya",
-                            "Liechtenstein",
-                            "Lithuania",
-                            "Luxembourg",
-                            "Macedonia",
-                            "Madagascar",
-                            "Malawi",
-                            "Malaysia",
-                            "Maldives",
-                            "Mali",
-                            "Malta",
-                            "Marshall Islands",
-                            "Mauritania",
-                            "Mauritius",
-                            "Mexico",
-                            "Federated States of Micronesia",
-                            "Moldova",
-                            "Monaco",
-                            "Mongolia",
-                            "Montenegro",
-                            "Morocco",
-                            "Mozambique",
-                            "Myanmar (Burma)",
-                            "Namibia",
-                            "Nauru",
-                            "Nepal",
-                            "Netherlands",
-                            "New Zealand",
-                            "Nicaragua",
-                            "Niger",
-                            "Nigeria",
-                            "Norway",
-                            "Oman",
-                            "Pakistan",
-                            "Palau",
-                            "Palestine",
-                            "Panama",
-                            "Papua New Guinea",
-                            "Paraguay",
-                            "Peru",
-                            "Philippines",
-                            "Poland",
-                            "Portugal",
-                            "Qatar",
-                            "Romania",
-                            "Russia",
-                            "Rwanda",
-                            "Saint Kitts and Nevis",
-                            "Saint Lucia",
-                            "Saint Vincent and the Grenadines",
-                            "Samoa",
-                            "San Marino",
-                            "Sao Tome and Principe",
-                            "Saudi Arabia",
-                            "Senegal",
-                            "Serbia",
-                            "Seychelles",
-                            "Sierra Leone",
-                            "Singapore",
-                            "Slovakia",
-                            "Slovenia",
-                            "Solomon Islands",
-                            "Somalia",
-                            "South Africa",
-                            "Spain",
-                            "Sri Lanka",
-                            "Sudan",
-                            "Suriname",
-                            "Swaziland",
-                            "Sweden",
-                            "Switzerland",
-                            "Syria",
-                            "Tajikistan",
-                            "Tanzania",
-                            "Thailand",
-                            "Togo",
-                            "Tonga",
-                            "Trinidad and Tobago",
-                            "Tunisia",
-                            "Turkey",
-                            "Turkmenistan",
-                            "Tuvalu",
-                            "Uganda",
-                            "Ukraine",
-                            "United Arab Emirates",
-                            "United Kingdom",
-                            "United States",
-                            "Uruguay",
-                            "Uzbekistan",
-                            "Vanuatu",
-                            "Vatican City (Holy Seed)",
-                            "Venezuela",
-                            "Vietnam",
-                            "Yemen",
-                            "Zambia",
-                            "Zimbabwe",
+                          items:  [
+                            "Afghanistan".tr,
+                            "Albania".tr,
+                            "Algeria".tr,
+                            "Andorra".tr,
+                            "Angola".tr,
+                            "Antigua & Barbuda".tr,
+                            "Argentina".tr,
+                            "Armenia".tr,
+                            "Australia".tr,
+                            "Austria".tr,
+                            "Azerbaijan".tr,
+                            "The Bahamas".tr,
+                            "Bahrin".tr,
+                            "Bangladesh".tr,
+                            "Barbados".tr,
+                            "Belarus".tr,
+                            "Belgium".tr,
+                            "Belize".tr,
+                            "Benin".tr,
+                            "Bhutan".tr,
+                            "Bolivia".tr,
+                            "Bosnia & Herzegovina".tr,
+                            "Botswana".tr,
+                            "Brazil".tr,
+                            "Brunei".tr,
+                            "Bulgaria".tr,
+                            "Burkina Faso".tr,
+                            "Burundi".tr,
+                            "Cambodia".tr,
+                            "Cameroon".tr,
+                            "Canada".tr,
+                            "Cape Verde ".tr,
+                            "Central African Republic ".tr,
+                            "Chad ".tr,
+                            "Chile".tr,
+                            "China".tr,
+                            "Colombia".tr,
+                            "Comoros".tr,
+                            "Republic of the Congo".tr,
+                            "Democratic Republic of the Congo ".tr,
+                            "Costa Rica".tr,
+                            "Cote d’Ivoire".tr,
+                            "Croatia".tr,
+                            "Cuba".tr,
+                            "Cyprus".tr,
+                            "Czech Republic".tr,
+                            "Denmark".tr,
+                            "Djibouti".tr,
+                            "Dominica".tr,
+                            "Dominican Republic".tr,
+                            "East Timor".tr,
+                            "Ecuador".tr,
+                            "Egypt".tr,
+                            "El Salvador".tr,
+                            "Equatorial Guinea".tr,
+                            "Eritrea".tr,
+                            "Estonia".tr,
+                            "Ethiopia".tr,
+                            "Fiji".tr,
+                            "Finland".tr,
+                            "France".tr,
+                            "Gabon".tr,
+                            "The Gambia".tr,
+                            "Georgia".tr,
+                            "Germany".tr,
+                            "Ghana".tr,
+                            "Greece".tr,
+                            "Grenada".tr,
+                            "Guatemala".tr,
+                            "Guinea".tr,
+                            "Guinea Bissau".tr,
+                            "Guyana".tr,
+                            "Haiti".tr,
+                            "Honduras".tr,
+                            "Hungary".tr,
+                            "Iceland".tr,
+                            "India".tr,
+                            "Indonesia".tr,
+                            "Iran".tr,
+                            "Iraq".tr,
+                            "Ireland".tr,
+                            "Italy".tr,
+                            "Jamaica".tr,
+                            "Japan".tr,
+                            "Jordan".tr,
+                            "Kazakhstan".tr,
+                            "Kenya".tr,
+                            "Kiribati".tr,
+                            "Korea".tr,
+                            "Kuwait".tr,
+                            "Kyrgyzstan".tr,
+                            "Laos".tr,
+                            "Latvia".tr,
+                            "Lebanon".tr,
+                            "Lesotho".tr,
+                            "Liberia".tr,
+                            "Libya".tr,
+                            "Liechtenstein".tr,
+                            "Lithuania".tr,
+                            "Luxembourg".tr,
+                            "Macedonia".tr,
+                            "Madagascar".tr,
+                            "Malawi".tr,
+                            "Malaysia".tr,
+                            "Maldives".tr,
+                            "Mali".tr,
+                            "Malta".tr,
+                            "Marshall Islands".tr,
+                            "Mauritania".tr,
+                            "Mauritius".tr,
+                            "Mexico".tr,
+                            "Federated States of Micronesia".tr,
+                            "Moldova".tr,
+                            "Monaco".tr,
+                            "Mongolia".tr,
+                            "Montenegro".tr,
+                            "Morocco".tr,
+                            "Mozambique".tr,
+                            "Myanmar (Burma)".tr,
+                            "Namibia".tr,
+                            "Nauru".tr,
+                            "Nepal".tr,
+                            "Netherlands".tr,
+                            "New Zealand".tr,
+                            "Nicaragua".tr,
+                            "Niger".tr,
+                            "Nigeria".tr,
+                            "Norway".tr,
+                            "Oman".tr,
+                            "Pakistan".tr,
+                            "Palau".tr,
+                            "Palestine".tr,
+                            "Panama".tr,
+                            "Papua New Guinea".tr,
+                            "Paraguay".tr,
+                            "Peru".tr,
+                            "Philippines".tr,
+                            "Poland".tr,
+                            "Portugal".tr,
+                            "Qatar".tr,
+                            "Romania".tr,
+                            "Russia".tr,
+                            "Rwanda".tr,
+                            "Saint Kitts and Nevis".tr,
+                            "Saint Lucia".tr,
+                            "Saint Vincent and the Grenadines".tr,
+                            "Samoa".tr,
+                            "San Marino".tr,
+                            "Sao Tome and Principe".tr,
+                            "Saudi Arabia".tr,
+                            "Senegal".tr,
+                            "Serbia".tr,
+                            "Seychelles".tr,
+                            "Sierra Leone".tr,
+                            "Singapore".tr,
+                            "Slovakia".tr,
+                            "Slovenia".tr,
+                            "Solomon Islands".tr,
+                            "Somalia".tr,
+                            "South Africa".tr,
+                            "Spain".tr,
+                            "Sri Lanka".tr,
+                            "Sudan".tr,
+                            "Suriname".tr,
+                            "Swaziland".tr,
+                            "Sweden".tr,
+                            "Switzerland".tr,
+                            "Syria".tr,
+                            "Tajikistan".tr,
+                            "Tanzania".tr,
+                            "Thailand".tr,
+                            "Togo".tr,
+                            "Tonga".tr,
+                            "Trinidad and Tobago".tr,
+                            "Tunisia".tr,
+                            "Turkey".tr,
+                            "Turkmenistan".tr,
+                            "Tuvalu".tr,
+                            "Uganda".tr,
+                            "Ukraine".tr,
+                            "United Arab Emirates".tr,
+                            "United Kingdom".tr,
+                            "United States".tr,
+                            "Uruguay".tr,
+                            "Uzbekistan".tr,
+                            "Vanuatu".tr,
+                            "Vatican City (Holy Seed)".tr,
+                            "Venezuela".tr,
+                            "Vietnam".tr,
+                            "Yemen".tr,
+                            "Zambia".tr,
+                            "Zimbabwe".tr,
                           ],
-                          dropdownDecoratorProps: const DropDownDecoratorProps(
+                          dropdownDecoratorProps:  DropDownDecoratorProps(
                             dropdownSearchDecoration: InputDecoration(
                               focusColor: Colors.black,
-                              enabledBorder: UnderlineInputBorder(
+                              enabledBorder: const UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.transparent),
                               ),
-                              fillColor: Color.fromARGB(255, 109, 109, 109),
-                              prefixIcon: Icon(Icons.flag),
+                              fillColor: const Color.fromARGB(255, 209, 209, 209),
+                              prefixIcon: const Icon(Icons.flag),
                               prefixIconColor: (Colors.black),
-                              labelText: "Nationalty",
-                              labelStyle: TextStyle(
+                              labelText: "message".tr,
+                              labelStyle: GoogleFonts.robotoSerif(
                                 color: Colors.black,
                               ),
-                              hintText: "HomeTown Country",
+                              hintText: "hint1".tr,
                             ),
                           ),
                           onChanged: (val) {
@@ -383,7 +401,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                           padding: const EdgeInsets.only(
                               top: 35, left: 35, right: 35),
                           child: TextFormField(
-                            controller: emailController,
+                            controller:_emailController,
                             onSaved: (text) {
                               Email = text;
                             },
@@ -396,8 +414,8 @@ class _SigninWidgetState extends State<SigninWidget> {
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.email),
                               prefixIconColor: (Colors.black),
-                              labelText: "Email Address",
-                              labelStyle: const TextStyle(
+                              labelText: "another".tr,
+                              labelStyle: GoogleFonts.robotoSerif(
                                 color: Colors.black,
                               ),
                               hintText: "@gmail.com",
@@ -407,7 +425,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                               ),
                               filled: true,
                               fillColor:
-                                  const Color.fromARGB(162, 109, 109, 109),
+                                  const Color.fromARGB(255, 209, 209, 209),
                               border: InputBorder.none,
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -434,7 +452,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(162, 109, 109, 109),
+                            color: const Color.fromARGB(255, 209, 209, 209),
                           ),
                           padding: const EdgeInsets.only(
                               bottom: 8, left: 20, right: 10),
@@ -447,20 +465,20 @@ class _SigninWidgetState extends State<SigninWidget> {
                             borderRadius: BorderRadius.circular(8),
                             underline: const Divider(color: Colors.transparent),
                             dropdownColor:
-                                const Color.fromARGB(255, 109, 109, 109),
+                                const Color.fromARGB(255, 209, 209, 209),
                             iconSize: 40,
                             isExpanded: true,
-                            hint: const Text(
-                              "Document Type ",
-                              style: TextStyle(
+                            hint:  Text(
+                              "Document".tr,
+                              style: GoogleFonts.robotoSerif(
                                 color: Colors.black,
                                 fontSize: 14,
                               ),
                               textDirection: TextDirection.ltr,
                             ),
                             items: [
-                              "High School Diploma",
-                              "Middle School Diploma",
+                              "doc1".tr,
+                              "doc2".tr,
                             ]
                                 .map((e) => DropdownMenuItem(
                                       value: e,
@@ -488,21 +506,17 @@ class _SigninWidgetState extends State<SigninWidget> {
                         padding: const EdgeInsets.all(15.0),
                         child: Container(
                           decoration: BoxDecoration(
-                              //  border: Border.all(
-                              //   color: Colors.black,
-                              //   width:2,
-                              //  ),
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: const [
                                 BoxShadow(
-                                  color: Color.fromARGB(255, 114, 114, 114),
+                                  color: Color.fromARGB(255, 180, 180, 180),
                                 )
                               ]),
                           alignment: Alignment.center,
                           // ignore: sort_child_properties_last
-                          child: const Text(
-                            "Sign in ",
-                            style: TextStyle(
+                          child:  Text(
+                            "Sign".tr,
+                            style:GoogleFonts.robotoSerif(
                               fontWeight: FontWeight.w500,
                               color: Colors.black,
                               fontSize: 20,
@@ -512,7 +526,16 @@ class _SigninWidgetState extends State<SigninWidget> {
                           height: 50,
                         ),
                       ),
-                      onTap: () {
+                      onTap: () async {
+                        if(formKey.currentState!.validate()){
+                         final users= UserModel(
+                          IDnum: _IDController.text.trim(),
+                          nationalty: _nationaltyController.text.trim(),
+                          document: _docController.text.trim(),
+                          email:_emailController.text.trim(),
+                          );
+                          SignUpController.instance.createUser(users);
+                        }
                         Navigator.push(
                             context,
                             MaterialPageRoute(
