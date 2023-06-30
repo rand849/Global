@@ -1,7 +1,8 @@
 // ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:translator/translator.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -13,8 +14,49 @@ class SettingWidget extends StatefulWidget {
 }
 class _SettingWidgetState extends State<SettingWidget>{
   var Language;
-  GoogleTranslator translator =GoogleTranslator();
-
+  final List locale=[
+    {'name':'English','locale': const Locale('en','US')},
+    {'name':'العربية','locale': const Locale('ar','lb')},
+  ];
+  updatelanguage(Locale locale){
+   Get.back();
+   Get.updateLocale(locale);
+  }
+  builddialoug(BuildContext context){
+    showDialog
+    (context: context,
+     builder: (builder){
+      return AlertDialog(
+        title:const Text('Choose Language'),
+        content: Container(
+          width:double.maxFinite,
+          child:ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (context,index){
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap:() {
+                   // ignore: avoid_print
+                   print(locale[index]['name']);
+                   updatelanguage(locale[index]['locale']);
+                  },
+                  child: Text(
+                    locale[index]['name']
+                    ),
+                ),
+              );
+            },
+             separatorBuilder: (context,index){
+              return const Divider(
+                color: Colors.green,
+              );
+             },
+              itemCount:locale.length)
+        ),
+      );
+     });
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -44,43 +86,16 @@ class _SettingWidgetState extends State<SettingWidget>{
                 ),
               ),
               const SizedBox(height: 22.40),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color(0xFF4D4D4D),
-                ),
-                margin: const EdgeInsets.only(
-                  top: 35,
-                  left: 25,
-                  right: 15,
-                ),
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    left: 30,
-                    right: 30,
-                  ),
-                  child: DropdownButton(
-                    borderRadius: BorderRadius.circular(8),
-                    underline: const Divider(color: Colors.transparent),
-                    dropdownColor: const Color(0xFF4D4D4D),
-                    iconSize: 30,
-                    isExpanded: true,
-                    hint: const Text("Choose Language "),
-                    items: ["English", "العربية"]
-                        .map((e) => DropdownMenuItem(
-                              value: e,
-                              child: Text(e),
-                            ))
-                        .toList(),
-                        onChanged: (val) {
-                                setState(() {
-                                Language = val.toString();
-                                });
-                              },
-                    
-                    value: Language,
-                  ),
-                ),
+              ElevatedButton(onPressed: (){
+               builddialoug(context);
+              },
+              style: ElevatedButton.styleFrom(
+              backgroundColor:const Color.fromARGB(255, 209, 209, 209),
+              textStyle: GoogleFonts.robotoSerif(
+                fontSize: 18,
+              )
+          ),
+              child:Text("lang".tr),
               ),
             ],
           ),

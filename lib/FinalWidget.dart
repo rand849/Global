@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class FinalWidget extends StatelessWidget {
@@ -34,13 +36,10 @@ class FinalWidget extends StatelessWidget {
                 height: 300,
                 width:300,
                 margin: const EdgeInsets.only(top:300,left:25),
-                child:const Text(
-                  "Thanks for reaching out.\n                                           You will get notified\nwhen your document is ready.",
-                  style:TextStyle(
-                    fontFamily: 'BacasimeAntique',
-                    fontStyle:FontStyle.italic,
+                child: Text(
+                  "message3".tr,
+                  style:GoogleFonts.robotoSerif(
                     fontSize: 28,
-                    fontWeight: FontWeight.w500,
                   ),
                 )
                ),

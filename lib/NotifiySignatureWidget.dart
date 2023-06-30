@@ -2,6 +2,8 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import 'SignatureWidget.dart';
@@ -35,12 +37,10 @@ class NotifiySignatureWidget extends StatelessWidget {
               height: 300,
               width: 300,
               margin: const EdgeInsets.only(top: 330, left: 25),
-              child: const Text(
-                "Write your Signature in the air.",
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
+              child:  Text(
+                "message2".tr,
+                style: GoogleFonts.robotoSerif(
                   fontSize: 26,
-                  fontWeight: FontWeight.w500,
                 ),
               )),
           Container(
@@ -58,14 +58,14 @@ class NotifiySignatureWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
                           BoxShadow(
-                            color:  Color.fromARGB(255, 161, 161, 161),
+                            color:  Color.fromARGB(255, 180, 180, 180),
                           )
                         ]),
                     alignment: Alignment.center,
                     // ignore: sort_child_properties_last
-                    child: const Text(
-                      "Open Camera",
-                      style: TextStyle(
+                    child:  Text(
+                      "open".tr,
+                      style: GoogleFonts.robotoSerif(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                         fontSize: 18,

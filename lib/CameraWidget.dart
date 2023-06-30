@@ -115,7 +115,7 @@ class _CameraWidgetState extends State<CameraWidget> {
           },
           height: 60,
           backgroundColor: Colors.transparent,
-          color: Colors.grey,
+          color:const Color.fromARGB(255, 180, 180, 180),
           items: const [
             Icon(Icons.camera_alt_outlined),
             Icon(Icons.flip_camera_ios_outlined),

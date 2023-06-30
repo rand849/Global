@@ -1,7 +1,10 @@
 // ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables, avoid_print, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:globalidoc/NotifyCameraWidget.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
+
+import 'NotifyCameraWidget.dart';
 
 class PayWidget extends StatefulWidget {
   const PayWidget({super.key});
@@ -54,11 +57,11 @@ class _PayWidgetState extends State<PayWidget> {
                       child: Container(
                       width: 300,
                       height: 60,
-                      child: const Text(
-                        " Payment Method :",
-                        style: TextStyle(
+                      child:  Text(
+                        "pay".tr,
+                        style: GoogleFonts.robotoSerif(
                           color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
                           fontSize: 26,
                         ),
                       ),
@@ -78,7 +81,7 @@ class _PayWidgetState extends State<PayWidget> {
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: const Color.fromARGB(162, 109, 109, 109),
+                                  color: const Color.fromARGB(255, 209, 209, 209),
                                 ),
                                  padding: const EdgeInsets.only(left: 20),
                                        margin: const EdgeInsets.only(
@@ -90,13 +93,13 @@ class _PayWidgetState extends State<PayWidget> {
                                   
                                   borderRadius: BorderRadius.circular(8),
                                   underline: const Divider(color: Colors.transparent),
-                                  dropdownColor: const Color.fromARGB(255, 109, 109, 109),
+                                  dropdownColor: const Color.fromARGB(255, 209, 209, 209),
                                   iconSize: 40,
                                 
-                                  hint: const Text(
-                                    "Type ",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 0, 0, 0),
+                                  hint:  Text(
+                                    "Type".tr,
+                                    style: GoogleFonts.robotoSerif(
+                                      color: const Color.fromARGB(255, 0, 0, 0),
                                       fontSize: 16,
                                     ),
                                     textDirection: TextDirection.ltr,
@@ -124,7 +127,6 @@ class _PayWidgetState extends State<PayWidget> {
                                 child: Container(
                                    padding: const EdgeInsets.only(left: 20,top: 10,),
                                        margin: const EdgeInsets.only(
-                                      //   top: 35,
                                         left: 10,
                                         right: 10,
                                         top:5,
@@ -142,13 +144,13 @@ class _PayWidgetState extends State<PayWidget> {
                                     maxLines: 2,
                                     decoration: InputDecoration(
                                       
-                                      hintText: "CVC Code",
-                                      hintStyle: const TextStyle(
+                                      hintText: "cvc".tr,
+                                      hintStyle: GoogleFonts.robotoSerif(
                                         fontSize: 14,
-                                        color: Color.fromARGB(255, 0, 0, 0),
+                                        color: const Color.fromARGB(255, 0, 0, 0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color.fromARGB(162, 109, 109, 109),
+                                      fillColor: const Color.fromARGB(255, 209, 209, 209),
                                       border: InputBorder.none,
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(10),
@@ -176,13 +178,13 @@ class _PayWidgetState extends State<PayWidget> {
                             minLines: 1,
                             maxLines: 2,
                             decoration: InputDecoration(
-                              hintText: "Card Holder Name",
-                              hintStyle: const TextStyle(
+                              labelText: "name".tr,
+                              labelStyle: GoogleFonts.robotoSerif(
                                 fontSize: 14,
-                                color: Color.fromARGB(255, 0, 0, 0),
+                                color: const Color.fromARGB(255, 0, 0, 0),
                               ),
                               filled: true,
-                              fillColor: const Color.fromARGB(162, 109, 109, 109),
+                              fillColor: const Color.fromARGB(255, 209, 209, 209),
                               border: InputBorder.none,
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -206,13 +208,13 @@ class _PayWidgetState extends State<PayWidget> {
                               minLines: 1,
                               maxLines: 2,
                               decoration: InputDecoration(
-                                hintText: "Credit Card Code",
-                                hintStyle: const TextStyle(
+                                labelText: 'number'.tr,
+                                labelStyle: GoogleFonts.robotoSerif(
                                   fontSize: 14,
-                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  color: const Color.fromARGB(255, 0, 0, 0),
                                 ),
                                 filled: true,
-                                fillColor: const Color.fromARGB(162, 109, 109, 109),
+                                fillColor: const Color.fromARGB(255, 209, 209, 209 ),
                                 border: InputBorder.none,
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -222,24 +224,17 @@ class _PayWidgetState extends State<PayWidget> {
                                     )),
                               ),
                             )),
-                            const Padding(
-                              padding: EdgeInsets.only(top:25,left: 15),
-                              child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: SizedBox(
-                      width: 200,
-                      height: 60,
-                      child: Text(
-                        " Expiration Date :",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  ),
+                         Container(
+                          margin:const  EdgeInsets.only(top:30,bottom: 30,right:195),
+                          child : Text(
+                            'Date'.tr,
+                            style:GoogleFonts.robotoSerif(
+                              fontSize:21,
+                              fontWeight: FontWeight.w400,
+                              
                             ),
+                          ),
+                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 8,right: 8,bottom: 8),
                           child: Container(
@@ -252,24 +247,22 @@ class _PayWidgetState extends State<PayWidget> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: const Color.fromARGB(162, 109, 109, 109),
+                                        color: const Color.fromARGB(255, 209, 209, 209),
                                       ),
                                        padding: const EdgeInsets.only(left: 20),
                                        margin: const EdgeInsets.only(
-                                      //   top: 35,
                                         left: 10,
-                                      //   right: 180,
                                        ),
                                       child: DropdownButton(
                                         borderRadius: BorderRadius.circular(10),
                                         underline: const Divider(color: Colors.transparent),
-                                        dropdownColor: const Color.fromARGB(255, 109, 109, 109),
+                                        dropdownColor: const Color.fromARGB(255, 209, 209, 209),
                                         iconSize: 40,
                                         isExpanded: true,
-                                        hint: const Text(
-                                          "Month ",
-                                          style: TextStyle(
-                                            color: Color.fromARGB(255, 0, 0, 0),
+                                        hint: Text(
+                                          "Month".tr,
+                                          style: GoogleFonts.robotoSerif(
+                                            color: const Color.fromARGB(255, 0, 0, 0),
                                             fontSize: 14,
                                           ),
                                           textDirection: TextDirection.ltr,
@@ -311,7 +304,7 @@ class _PayWidgetState extends State<PayWidget> {
                                      child: Container(
                                        decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: const Color.fromARGB(162, 109, 109, 109),
+                                      color: const Color.fromARGB(255, 209, 209, 209),
                                        ),
                                        padding: const EdgeInsets.only(
                                       left: 20,
@@ -321,13 +314,13 @@ class _PayWidgetState extends State<PayWidget> {
                                        child: DropdownButton(
                                       borderRadius: BorderRadius.circular(8),
                                       underline: const Divider(color: Colors.transparent),
-                                      dropdownColor: const Color.fromARGB(255, 109, 109, 109),
+                                      dropdownColor: const Color.fromARGB(255, 209, 209, 209),
                                       iconSize: 40,
                                       isExpanded: true,
-                                      hint: const Text(
-                                        "Year ",
-                                        style: TextStyle(
-                                          color: Color.fromARGB(255, 0, 0, 0),
+                                      hint: Text(
+                                        "Year".tr,
+                                        style: GoogleFonts.robotoSerif(
+                                          color: const Color.fromARGB(255, 0, 0, 0),
                                           fontSize: 16,
                                         ),
                                         textDirection: TextDirection.ltr,
@@ -376,16 +369,16 @@ class _PayWidgetState extends State<PayWidget> {
                            boxShadow: const [
                             BoxShadow(
                             
-                            color: Color.fromARGB(255, 158, 158, 158),
+                            color: Color.fromARGB(255, 180, 180, 180),
                             )]
                        ),
                         alignment: Alignment.center,
                         // ignore: sort_child_properties_last
-                        child: const Text(
-                          "Next ",
-                          style: TextStyle(
+                        child:  Text(
+                          "Next".tr,
+                          style: GoogleFonts.robotoSerif(
                             fontWeight: FontWeight.w500,
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: const Color.fromARGB(255, 0, 0, 0),
                             fontSize: 20,
                           ),
                         ),

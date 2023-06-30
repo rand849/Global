@@ -2,12 +2,15 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:io';
 
 import '../CameraWidget.dart';
 import '../FinalWidget.dart';
 import '../NotifiySignatureWidget.dart';
 import '../SignatureWidget.dart';
+
 
 class PreviewPage extends StatefulWidget {
   const PreviewPage({Key? key, required this.picture}) : super(key: key);
@@ -28,9 +31,9 @@ class _PreviewPageState extends State<PreviewPage> {
           color: Colors.black,
           size: 30,
         ),
-        title: const Text(
-          "Image Preview",
-          style: TextStyle(
+        title:  Text(
+          "Preview".tr,
+          style: GoogleFonts.robotoSerif(
             color: Colors.black,
           ),
         ),
@@ -68,7 +71,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       );
 
   Widget buildHeader(BuildContext context) => Container(
-        color: Colors.grey.shade700,
+        color:const  Color.fromARGB(190,49, 214, 145),
         padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top,
         ),
@@ -82,7 +85,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             ListTile(
               leading:
                   const Icon(Icons.party_mode_outlined, color: Colors.black),
-              title: const Text("Retake Picture"),
+              title:  Text("retake".tr,
+                            style: GoogleFonts.robotoSerif(
+                            fontSize: 16,
+              ),),
               onTap: () async {
                 await availableCameras().then(
                   (value) => Navigator.of(context).pushReplacement(
@@ -98,7 +104,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             ),
             ListTile(
               leading: const Icon(Icons.history_edu, color: Colors.black),
-              title: const Text("Signature"),
+              title: Text("signature".tr,
+                            style: GoogleFonts.robotoSerif(
+                            fontSize: 16,
+              ),),
               onTap: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const NotifiySignatureWidget()));
@@ -106,7 +115,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             ),
             ListTile(
               leading: const Icon(Icons.refresh_outlined, color: Colors.black),
-              title: const Text("Redo Signature"),
+              title: Text("redo".tr,
+                            style: GoogleFonts.robotoSerif(
+                            fontSize: 16,
+              ),),
               onTap: () async {
                 await availableCameras().then(
                   (value) => Navigator.of(context).pushReplacement(
@@ -123,7 +135,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             ListTile(
               leading:
                   const Icon(Icons.check_circle_outline, color: Colors.black),
-              title: const Text("Done"),
+              title:  Text("done".tr,
+                            style: GoogleFonts.robotoSerif(
+                            fontSize: 16,
+              ),),
               onTap: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const FinalWidget()));

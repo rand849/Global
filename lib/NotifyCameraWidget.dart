@@ -2,8 +2,10 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:globalidoc/CameraWidget.dart';
 import 'package:lottie/lottie.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NotifiyCameraWidget extends StatelessWidget {
   const NotifiyCameraWidget({super.key});
@@ -32,14 +34,13 @@ class NotifiyCameraWidget extends StatelessWidget {
           Container(
               height: 300,
               width: 300,
-              margin: const EdgeInsets.only(top: 330, left: 25),
-              child: const Text(
-                "\nPlease take a picture \nto verify your identity,\n                                            We appreciate your \npatience.",
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
+              margin: const EdgeInsets.only(top: 310, left: 25),
+              child:  Text(
+                "message1".tr,
+                style: GoogleFonts.robotoSerif(
                   fontSize: 26,
-                  fontWeight: FontWeight.w500,
                 ),
+
               )),
           Container(
             width: 170,
@@ -58,14 +59,14 @@ class NotifiyCameraWidget extends StatelessWidget {
                         boxShadow: const [
                           BoxShadow(
                        
-                            color: Color.fromARGB(255, 161, 161, 161),
+                            color: Color.fromARGB(255, 180, 180, 180),
                           )
                         ]),
                     alignment: Alignment.center,
                     // ignore: sort_child_properties_last
-                    child: const Text(
-                      "Open Camera",
-                      style: TextStyle(
+                    child:  Text(
+                      "open".tr,
+                      style:GoogleFonts.robotoSerif(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                         fontSize: 18,
