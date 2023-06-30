@@ -24,15 +24,16 @@ class _SigninWidgetState extends State<SigninWidget> {
   var Town;
   var Doc;
   var Email;
-  
-  final _nationaltyController=TextEditingController();
-  final _docController =TextEditingController();
+
+  final _nationaltyController = TextEditingController();
+  final _docController = TextEditingController();
   final _emailController = TextEditingController();
+  final _certificateController = TextEditingController();
   final _IDController = TextEditingController();
-  final controller =Get.put(SignUpController());
+  final controller = Get.put(SignUpController());
   final _formfield = GlobalKey<FormState>();
-  final formKey =GlobalKey<FormState>();
-  final userRepo =Get.put(UserRepository());
+  final formKey = GlobalKey<FormState>();
+  final userRepo = Get.put(UserRepository());
   // GlobalKey<FormFieldState> formKey = GlobalKey<FormFieldState>();
 
   send() {
@@ -44,15 +45,16 @@ class _SigninWidgetState extends State<SigninWidget> {
       print("not valid");
     }
   }
- 
+
   @override
-    void dispose(){
+  void dispose() {
     _nationaltyController.dispose();
     _docController.dispose();
     _emailController.dispose();
     _IDController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -167,12 +169,12 @@ class _SigninWidgetState extends State<SigninWidget> {
                             menuProps: MenuProps(
                               elevation: 1,
                               backgroundColor:
-                                  Color.fromARGB(255, 209,209, 209),
+                                  Color.fromARGB(255, 209, 209, 209),
                             ),
                             showSearchBox: true,
                             showSelectedItems: true,
                           ),
-                          items:  [
+                          items: [
                             "Afghanistan".tr,
                             "Albania".tr,
                             "Algeria".tr,
@@ -366,14 +368,15 @@ class _SigninWidgetState extends State<SigninWidget> {
                             "Zambia".tr,
                             "Zimbabwe".tr,
                           ],
-                          dropdownDecoratorProps:  DropDownDecoratorProps(
+                          dropdownDecoratorProps: DropDownDecoratorProps(
                             dropdownSearchDecoration: InputDecoration(
                               focusColor: Colors.black,
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.transparent),
                               ),
-                              fillColor: const Color.fromARGB(255, 209, 209, 209),
+                              fillColor:
+                                  const Color.fromARGB(255, 209, 209, 209),
                               prefixIcon: const Icon(Icons.flag),
                               prefixIconColor: (Colors.black),
                               labelText: "message".tr,
@@ -401,7 +404,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                           padding: const EdgeInsets.only(
                               top: 35, left: 35, right: 35),
                           child: TextFormField(
-                            controller:_emailController,
+                            controller: _certificateController,
                             onSaved: (text) {
                               Email = text;
                             },
@@ -468,7 +471,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                                 const Color.fromARGB(255, 209, 209, 209),
                             iconSize: 40,
                             isExpanded: true,
-                            hint:  Text(
+                            hint: Text(
                               "Document".tr,
                               style: GoogleFonts.robotoSerif(
                                 color: Colors.black,
@@ -514,9 +517,9 @@ class _SigninWidgetState extends State<SigninWidget> {
                               ]),
                           alignment: Alignment.center,
                           // ignore: sort_child_properties_last
-                          child:  Text(
+                          child: Text(
                             "Sign".tr,
-                            style:GoogleFonts.robotoSerif(
+                            style: GoogleFonts.robotoSerif(
                               fontWeight: FontWeight.w500,
                               color: Colors.black,
                               fontSize: 20,
@@ -527,12 +530,12 @@ class _SigninWidgetState extends State<SigninWidget> {
                         ),
                       ),
                       onTap: () async {
-                        if(formKey.currentState!.validate()){
-                         final users= UserModel(
-                          IDnum: _IDController.text.trim(),
-                          nationalty: _nationaltyController.text.trim(),
-                          document: _docController.text.trim(),
-                          email:_emailController.text.trim(),
+                        if (formKey.currentState!.validate()) {
+                          final users = UserModel(
+                            IDnum: _IDController.text.trim(),
+                            nationalty: _nationaltyController.text.trim(),
+                            document: _docController.text.trim(),
+                            email: _emailController.text.trim(),
                           );
                           SignUpController.instance.createUser(users);
                         }
