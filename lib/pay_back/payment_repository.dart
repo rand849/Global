@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:globalidoc/model/user.dart';
+import 'package:globalidoc/pay_back/model/pay.dart';
 
 
-class UserRepository extends GetxController{
-  static UserRepository get instance=>Get.find();
+
+class PaymentRepository extends GetxController{
+  static PaymentRepository get instance=>Get.find();
 
   final _db = FirebaseFirestore.instance;
 
-  createUser(UserModel user) async {
-    await _db.collection("users").add(user.toJson()).whenComplete(()
-     => Get.snackbar("Sucess", "Your account has been added",
+  createUser(PayModel pay) async {
+    await _db.collection("payment").add(pay.toJson()).whenComplete(()
+     => Get.snackbar("Sucess", "Payment completed successfully",
      snackPosition: SnackPosition.BOTTOM,
      backgroundColor:const Color.fromARGB(255, 209, 209, 209),
      colorText: Colors.green),

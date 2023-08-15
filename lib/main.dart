@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:globalidoc/firebase_options.dart';
-import 'WelcomeWidget.dart';
-import 'translation/localString.dart';
+import 'package:globalidoc/translation/localString.dart';
+import 'ui/WelcomeWidget.dart';
 
 
 Future<void> main() async {
@@ -40,7 +40,6 @@ class GlobalIDoc extends StatelessWidget {
       ),
     );
   }
-
 }
 
 

@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:globalidoc/PayWidget.dart';
-import 'package:globalidoc/SettingWidget.dart';
-import 'package:globalidoc/model/user.dart';
-import 'package:globalidoc/repository/user_repository.dart';
-import 'package:globalidoc/repository/controller/signup_controller.dart';
+import 'package:globalidoc/signin_back/model/user.dart';
+import 'package:globalidoc/signin_back/controller/signup_controller.dart';
+import 'package:globalidoc/signin_back/user_repository.dart';
+import 'package:globalidoc/ui/PayWidget.dart';
+import 'package:globalidoc/ui/SettingWidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
@@ -28,13 +28,12 @@ class _SigninWidgetState extends State<SigninWidget> {
   final _nationaltyController = TextEditingController();
   final _docController = TextEditingController();
   final _emailController = TextEditingController();
-  final _certificateController = TextEditingController();
   final _IDController = TextEditingController();
   final controller = Get.put(SignUpController());
   final _formfield = GlobalKey<FormState>();
   final formKey = GlobalKey<FormState>();
   final userRepo = Get.put(UserRepository());
-  // GlobalKey<FormFieldState> formKey = GlobalKey<FormFieldState>();
+ 
 
   send() {
     var formdata = formKey.currentState;
@@ -404,7 +403,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                           padding: const EdgeInsets.only(
                               top: 35, left: 35, right: 35),
                           child: TextFormField(
-                            controller: _certificateController,
+                            controller: _emailController,
                             onSaved: (text) {
                               Email = text;
                             },
@@ -482,6 +481,8 @@ class _SigninWidgetState extends State<SigninWidget> {
                             items: [
                               "doc1".tr,
                               "doc2".tr,
+                              "doc3".tr,
+                              'doc4'.tr,
                             ]
                                 .map((e) => DropdownMenuItem(
                                       value: e,
@@ -510,7 +511,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              boxShadow: const [
+                              boxShadow:const [
                                 BoxShadow(
                                   color: Color.fromARGB(255, 180, 180, 180),
                                 )

@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:globalidoc/SigninWidget.dart';
+import 'package:globalidoc/ui/SigninWidget.dart';
 
 
 class WelcomeWidget extends StatelessWidget {
@@ -35,7 +35,7 @@ class WelcomeWidget extends StatelessWidget {
                             width:2,
                            ),
                            borderRadius: BorderRadius.circular(40),
-                           boxShadow: const [
+                           boxShadow:const [
                             BoxShadow(
                             blurRadius: 1,
                             color: Colors.white,

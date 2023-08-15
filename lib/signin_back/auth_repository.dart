@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:globalidoc/model/user.dart';
+import 'package:globalidoc/signin_back/model/user.dart';
 
 class AuthRepository {
   static Future addUser(UserModel users) async {

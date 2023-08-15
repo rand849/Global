@@ -1,7 +1,9 @@
 
 import 'package:get/get.dart';
-import 'package:globalidoc/model/user.dart';
-import 'package:globalidoc/repository/user_repository.dart';
+import 'package:globalidoc/signin_back/model/user.dart';
+
+
+import '../user_repository.dart';
 
 class SignUpController extends GetxController{
   static SignUpController get instance => Get.find();

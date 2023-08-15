@@ -1,3 +1,6 @@
+
+// ignore_for_file: file_names
+
 import 'package:get/get.dart';
 
 class LocalString extends Translations{
@@ -12,6 +15,8 @@ class LocalString extends Translations{
       'hint':'Not less than 9 numbers',
       'doc1':'High School Diploma',
       'doc2' :'Middle School Diploma',
+      'doc3':'Individual Civil Registry Record',
+      'doc4':'Family Civil Registry Record',
       'hint1':'HomeTown Country',
       'pay':'Payment Method',
       'Type':'Type',
@@ -235,6 +240,8 @@ class LocalString extends Translations{
       'hint':'ما لا يقل عن 9 أرقام',
       'doc1':'شهادة التعليم الثانوي',
       'doc2':'شهادة التعليم الأساسي',
+      'doc3':'إخراج قيد فردي',
+      'doc4':'إخراج قيد عائلي',
       'hint1':'البلد المنشأ',
       'pay':': الدفع الالكتروني',
       'Type':'نوع البطاقة',

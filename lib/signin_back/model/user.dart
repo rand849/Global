@@ -27,10 +27,10 @@ class UserModel {
       if(data == null){
         return;
       }
-    nationalty :data ['nationalty'];
+    nationality :data ['nationality'];
     email :data ['email']; 
     document : data ['document'];
-    IDnum :data['IDnum'] ;
+    idnumber :data['idnumber'] ;
 
    }
 }

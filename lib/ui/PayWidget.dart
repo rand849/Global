@@ -1,6 +1,9 @@
 // ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables, avoid_print, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:globalidoc/pay_back/model/pay.dart';
+import 'package:globalidoc/pay_back/controller/payment_controller.dart';
+import 'package:globalidoc/pay_back/pay_repositiry.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
@@ -15,14 +18,24 @@ class PayWidget extends StatefulWidget {
 }
 
 class _PayWidgetState extends State<PayWidget> {
- var Credit;
- var Month;
- var year;
+    var Credit;
+    var Month;
+    var year;
 
-  GlobalKey<FormFieldState> FormA =  GlobalKey<FormFieldState>();
+    final formKey = GlobalKey<FormState>();
+    final _typeController = TextEditingController();
+    final _cvcController = TextEditingController();
+    final _nameController = TextEditingController();
+    final _codeController = TextEditingController();
+    final _monthController = TextEditingController();
+    final _yearController = TextEditingController();
+    final controller = Get.put(PaymentController());
+    final userRepo = Get.put(PayRepository());
+  
+    
 
    send() {
-      var formdata = FormA.currentState;
+      var formdata = formKey.currentState;
       if (formdata!.validate()) {
         formdata.save();
         print("IDnum=$Credit");
@@ -70,7 +83,7 @@ class _PayWidgetState extends State<PayWidget> {
                   ),
                   
                   Form(
-                    key: FormA,
+                    key: formKey,
                     child: Column(
                       children: [
                        
@@ -135,7 +148,7 @@ class _PayWidgetState extends State<PayWidget> {
                                     onSaved: (text) {
                                       Credit = text!;
                                     },
-                                    
+                                    controller: _cvcController,
                                     style: const TextStyle(fontSize: 15),
                                     textInputAction: TextInputAction.next,
                                     textAlign: TextAlign.left,
@@ -169,6 +182,7 @@ class _PayWidgetState extends State<PayWidget> {
                         Container(
                           padding: const EdgeInsets.only(top: 25, left: 35, right: 35),
                           child: TextFormField(
+                            controller: _nameController,
                             onSaved: (text) {
                               Credit = text!;
                             },
@@ -198,6 +212,7 @@ class _PayWidgetState extends State<PayWidget> {
                         Container(
                             padding: const EdgeInsets.only(top: 35, left: 35, right: 35),
                             child: TextFormField(
+                              controller: _codeController,
                               onSaved: (text) {
                                 Credit = text!;
                               },
@@ -229,7 +244,7 @@ class _PayWidgetState extends State<PayWidget> {
                           child : Text(
                             'Date'.tr,
                             style:GoogleFonts.robotoSerif(
-                              fontSize:21,
+                              fontSize:18,
                               fontWeight: FontWeight.w400,
                               
                             ),
@@ -368,7 +383,6 @@ class _PayWidgetState extends State<PayWidget> {
                            borderRadius: BorderRadius.circular(20),
                            boxShadow: const [
                             BoxShadow(
-                            
                             color: Color.fromARGB(255, 180, 180, 180),
                             )]
                        ),
@@ -386,6 +400,17 @@ class _PayWidgetState extends State<PayWidget> {
                         height: 50,
                       ),
                       onTap: () {
+                      if (formKey.currentState!.validate()) {
+                          final users = PayModel(
+                            type: _typeController.text.trim(),
+                            cvc: _cvcController.text.trim(),
+                            name: _nameController.text.trim(),
+                            code: _codeController.text.trim(),
+                            month: _monthController.text.trim(),
+                            year: _yearController.text.trim(),
+                          );
+                          PaymentController.instance.createUser(users);
+                        }
                         Navigator.push(
                             context,
                             MaterialPageRoute(

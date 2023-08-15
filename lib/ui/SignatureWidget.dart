@@ -1,23 +1,25 @@
 // ignore_for_file: file_names, avoid_print, sized_box_for_whitespace, use_build_context_synchronously
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:globalidoc/FinalWidget.dart';
-import 'package:globalidoc/PayWidget.dart';
-import 'package:globalidoc/WelcomeWidget.dart';
-import 'package:globalidoc/screen/PreviewPage.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:globalidoc/screen_ui/PreviewPage.dart';
 
-class CameraWidget extends StatefulWidget {
-  const CameraWidget({Key? key, required this.cameras}) : super(key: key);
+import 'FinalWidget.dart';
+import 'PayWidget.dart';
+import 'WelcomeWidget.dart';
+
+class SignatureWidget extends StatefulWidget {
+    const SignatureWidget({Key? key, required this.cameras}) : super(key: key);
 
   final List<CameraDescription>? cameras;
 
   @override
-  State<CameraWidget> createState() => _CameraWidgetState();
+  State<SignatureWidget> createState() => _SignatureWidgetState();
 }
 
-class _CameraWidgetState extends State<CameraWidget> {
+class _SignatureWidgetState extends State<SignatureWidget> {
+
   late CameraController _cameraController;
   bool _isRearCameraSelected = true;
 
@@ -115,7 +117,7 @@ class _CameraWidgetState extends State<CameraWidget> {
           },
           height: 60,
           backgroundColor: Colors.transparent,
-          color:const Color.fromARGB(255, 180, 180, 180),
+          color: Colors.grey,
           items: const [
             Icon(Icons.camera_alt_outlined),
             Icon(Icons.flip_camera_ios_outlined),
@@ -123,4 +125,5 @@ class _CameraWidgetState extends State<CameraWidget> {
     );
   }
 }
+
 
